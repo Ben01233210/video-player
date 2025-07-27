@@ -28,6 +28,7 @@ walkdir = "2"  # For filesystem walking
 libmpv = "2.0"
 dirs = "6.0.0"
 tauri-plugin-dialog = "2"
+tauri-plugin-shell = "2.3.0"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-cli = "2"

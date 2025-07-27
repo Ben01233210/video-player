@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+	background-color: transparent;
+	color: #f1f1f1; /* A light default text color for dark mode */
+}

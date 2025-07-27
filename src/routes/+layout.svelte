@@ -1,34 +1,14 @@
 <script>
-    import { onMount } from "svelte";
-    import { listen } from "@tauri-apps/api/event";
+	import { onMount } from 'svelte';
+	import { initializeMpvListener } from '$lib/mpv.svelte';
+	import '../app.css';
 
-    import { page } from "$app/stores";
-
-    let currentTime = 0;
-    let duration = 0;
-
-    onMount(() => {
-        listen("mpv-event", (event) => {
-            const payload = event.payload;
-            if (payload.event_type === "property-change") {
-                if (payload.name === "time-pos") {
-                    currentTime = payload.data || 0;
-                } else if (payload.name === "duration") {
-                    duration = payload.data || 0;
-                }
-            }
-        });
-    });
+	onMount(() => {
+		initializeMpvListener();
+	});
 </script>
 
-<slot {currentTime} {duration} />
-
-<style>
-    :global(body) {
-        margin: 0;
-        padding: 0;
-        background: black; /* Clean black background for player */
-        color: white;
-        font-family: Arial, sans-serif;
-    }
-</style>
+<main class="m-0 p-0 w-screen h-screen">
+<slot />
+</main>
+	
