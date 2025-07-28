@@ -146,6 +146,10 @@ pub fn setup_mpv(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>>
     let window_handle = match handle {
         RawWindowHandle::Win32(handle) => handle.hwnd.get() as i64,
         RawWindowHandle::Xlib(handle) => handle.window as i64,
+        RawWindowHandle::Wayland(handle) => {
+            let i = unsafe {handle.surface.read()};
+            i as i64
+        }
         // Add other platforms as needed
         _ => return Err("Unsupported window handle type".into()),
     };
